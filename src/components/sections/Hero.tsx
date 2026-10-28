@@ -1,20 +1,18 @@
 "use client";
 
-import Image from "next/image";
+import { Botanicals } from "@/components/ui/DecorativeElements";
 import FadeIn from "@/components/ui/FadeIn";
 import GuestGreeting from "@/components/ui/GuestGreeting";
 import ScriptName from "@/components/ui/ScriptName";
-import { BISMILLAH, COUPLE, EVENT, HERO, PHOTOS } from "@/lib/constants";
+import { BISMILLAH, COUPLE, EVENT, HERO } from "@/lib/constants";
 
 export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex items-center overflow-hidden px-6 pt-[46vh] pb-12 sm:px-12 lg:min-h-[92dvh] lg:px-20 lg:pt-24"
+      className="relative flex items-center overflow-hidden px-6 pt-32 pb-16 sm:px-12 lg:min-h-[92dvh] lg:px-20 lg:pt-24"
     >
-      <div className="hero-photo" aria-hidden>
-        <Image src={PHOTOS.couple.src} alt="" fill priority sizes="(max-width: 1024px) 100vw, 60vw" />
-      </div>
+      <Botanicals className="botanicals--hero" />
       <div className="hero-glow" aria-hidden />
 
       <p className="side-text eyebrow hidden lg:block">

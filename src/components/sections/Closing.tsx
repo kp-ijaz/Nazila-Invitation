@@ -1,15 +1,13 @@
-import Image from "next/image";
+import { Botanicals } from "@/components/ui/DecorativeElements";
 import FadeIn from "@/components/ui/FadeIn";
 import OrnamentalDivider from "@/components/ui/OrnamentalDivider";
 import ScriptName from "@/components/ui/ScriptName";
-import { CLOSING_MESSAGE, COUPLE, FOOTER, PHOTOS } from "@/lib/constants";
+import { CLOSING_MESSAGE, COUPLE, FOOTER } from "@/lib/constants";
 
 export default function Closing() {
   return (
     <section className="closing-band relative overflow-hidden px-6 py-7 text-center sm:px-12 sm:py-9 lg:px-20">
-      <div className="closing-photo" aria-hidden>
-        <Image src={PHOTOS.couple.src} alt="" fill sizes="100vw" />
-      </div>
+      <Botanicals className="botanicals--band" />
       <FadeIn duration={1.1} className="relative mx-auto max-w-2xl">
         <p className="font-heading text-lg font-medium leading-snug text-ink sm:text-xl">
           {CLOSING_MESSAGE}

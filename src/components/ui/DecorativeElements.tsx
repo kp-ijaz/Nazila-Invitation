@@ -97,3 +97,28 @@ export function GeometricPattern({ className = "" }: { className?: string }) {
     />
   );
 }
+
+// [left %, top %, size px] — loose pearls scattered near the drapes
+const PEARLS: [number, number, number][] = [
+  [6, 58, 7],
+  [11, 66, 5],
+  [88, 30, 6],
+  [93, 24, 4],
+  [82, 76, 8],
+  [90, 84, 5],
+];
+
+/** Ivory stationery backdrop: sage botanical sprigs in two corners, chiffon drapes and pearls. */
+export function Botanicals({ className = "" }: { className?: string }) {
+  return (
+    <div className={`botanicals ${className}`} aria-hidden>
+      <span className="drape drape--top" />
+      <span className="drape drape--bottom" />
+      <Image src="/decor/botanical-spray.svg" alt="" width={300} height={400} className="spray spray--top" />
+      <Image src="/decor/botanical-spray.svg" alt="" width={300} height={400} className="spray spray--bottom" />
+      {PEARLS.map(([x, y, size]) => (
+        <span key={`${x}-${y}`} className="pearl" style={{ left: `${x}%`, top: `${y}%`, width: size, height: size }} />
+      ))}
+    </div>
+  );
+}

@@ -42,11 +42,13 @@ export const EVENT = {
   dateMonthYear: "December 2026",
   nikahTime: "11:30 AM",
   countdownTarget: "2026-12-28T11:30:00",
-  venue: "SHAMS Auditorium",
-  address: "Azhiyur",
-  mapsUrl: "https://maps.app.goo.gl/DYdL6actsL2K6zVT9",
+  venue: "Milan International Convention Centre",
+  address: "Chettuva, Thrissur",
+  // search links resolve the venue by name, so no coordinates to keep in sync
+  mapsUrl:
+    "https://www.google.com/maps/search/?api=1&query=Milan+International+Convention+Centre+Chettuva+Thrissur",
   mapsEmbedUrl:
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3907.0436684608985!2d75.54273757485413!3d11.691317741653036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba682a3704f9d19%3A0x53ed9685aaea0aec!2sSHAMS%20Auditorium!5e0!3m2!1sen!2sae!4v1784915109615!5m2!1sen!2sae",
+    "https://maps.google.com/maps?q=Milan+International+Convention+Centre+Chettuva+Thrissur&z=15&output=embed",
 };
 
 export const CONTACTS = {
@@ -78,11 +80,4 @@ export const AUDIO = {
     { src: "/audio/wedding-nasheed.mp3", type: "audio/mpeg" },
   ],
   volume: 0.35,
-};
-
-export const PHOTOS = {
-  couple: {
-    src: "/photos/couple.jpg",
-    alt: "Nazila and Aqib",
-  },
 };

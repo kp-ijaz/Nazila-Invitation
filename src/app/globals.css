@@ -29,7 +29,6 @@
   --ink: #1f1a14;
   --ink-muted: #6f6556;
   --line: rgba(169, 131, 47, 0.3);
-  --star-lattice: url("data:image/svg+xml,%3Csvg width='96' height='96' viewBox='0 0 96 96' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23A9832F' stroke-opacity='0.2'%3E%3Cpath d='M48 10l6 14 14 6-14 6-6 14-6-14-14-6 14-6 6-14z'/%3E%3Cpath d='M0 58l6 14 14 6-14 6-6 14M96 58l-6 14-14 6 14 6 6 14M0 38l6-14 14-6-14-6-6-14M96 38l-6-14-14-6 14-6 6-14'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 html {
@@ -72,9 +71,7 @@ body {
   pointer-events: none;
   background:
     radial-gradient(ellipse at 50% 0%, rgba(212, 175, 90, 0.12), transparent 55%),
-    radial-gradient(ellipse at 50% 100%, rgba(212, 175, 90, 0.06), transparent 50%),
-    var(--star-lattice);
-  background-size: 100% 100%, 100% 100%, 96px 96px;
+    radial-gradient(ellipse at 50% 100%, rgba(212, 175, 90, 0.06), transparent 50%);
   opacity: 1;
 }
 
@@ -292,17 +289,6 @@ body {
 
 /* ---------- opening ---------- */
 
-.opening-glow {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 50% 50%, rgba(212, 175, 90, 0.2), transparent 40%),
-    var(--star-lattice);
-  background-size: 100% 100%, 96px 96px;
-  opacity: 0.9;
-}
-
 .opening-tap-hint {
   animation: musicTogglePulse 2.4s ease-in-out infinite;
 }
@@ -490,47 +476,6 @@ body {
   background: linear-gradient(90deg, #52695a, #a88550, #b98779, #52695a);
 }
 
-.hero-photo {
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 56vh;
-  pointer-events: none;
-}
-
-.hero-photo img {
-  object-fit: cover;
-  object-position: center 35%;
-  filter: sepia(0.3) saturate(0.7) contrast(0.95);
-  mix-blend-mode: multiply;
-  opacity: 0.9;
-}
-
-/* fade the photo into the paper so copy can sit over it */
-.hero-photo::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(250, 246, 238, 0.7) 0%,
-    rgba(250, 246, 238, 0) 28%,
-    rgba(250, 246, 238, 0) 48%,
-    var(--paper) 92%
-  );
-}
-
-@media (min-width: 1024px) {
-  .hero-photo {
-    inset: 0 0 0 42%;
-    height: auto;
-  }
-
-  .hero-photo::after {
-    background:
-      linear-gradient(90deg, var(--paper) 0%, rgba(250, 246, 238, 0.7) 20%, rgba(250, 246, 238, 0) 55%),
-      linear-gradient(180deg, rgba(250, 246, 238, 0.65) 0%, rgba(250, 246, 238, 0) 26%, rgba(250, 246, 238, 0) 70%, var(--paper) 100%);
-  }
-}
 
 .date-stamp {
   width: max-content;
@@ -548,44 +493,95 @@ body {
   pointer-events: none;
 }
 
-/* couple photo multiplied into the paper, fading out at the edges */
-.closing-photo {
+/* ---------- ivory botanical backdrop ---------- */
+
+.botanicals {
   position: absolute;
   inset: 0;
-  z-index: 0; /* own stacking context so the tint layers stay under the text */
+  overflow: hidden;
   pointer-events: none;
 }
 
-.closing-photo img {
-  object-fit: cover;
-  object-position: center 60%;
-  filter: sepia(0.65) saturate(1.1) brightness(1.08) contrast(0.9);
-  mix-blend-mode: multiply;
-  opacity: 0.3;
-}
-
-/* deeper gold so the names hold up over the photo */
-.closing-band .gold-foil-text {
-  background-image: linear-gradient(135deg, #4f3b0f 0%, #7a5d1c 45%, #5e4713 100%);
-}
-
-/* recolour the photo's greys into warm gold */
-.closing-photo::before {
-  content: "";
+/* sage chiffon: soft folds faded out at the edges */
+.drape {
   position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: #c9a04a;
-  mix-blend-mode: color;
-  opacity: 0.4;
-}
-
-.closing-photo::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 2;
+  width: 70%;
+  height: 60%;
   background:
-    linear-gradient(180deg, var(--paper) 0%, transparent 30%, transparent 70%, var(--paper) 100%);
+    repeating-linear-gradient(112deg, rgba(150, 162, 132, 0.14) 0 16px, rgba(150, 162, 132, 0.03) 16px 38px),
+    repeating-linear-gradient(124deg, rgba(150, 162, 132, 0.08) 0 24px, transparent 24px 52px),
+    radial-gradient(ellipse at center, rgba(176, 186, 160, 0.5), transparent 70%);
+  filter: blur(9px);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 20%, transparent 70%);
+  mask-image: radial-gradient(ellipse at center, #000 20%, transparent 70%);
+}
+
+.drape--top {
+  top: -24%;
+  left: -26%;
+  transform: rotate(-24deg);
+}
+
+.drape--bottom {
+  right: -28%;
+  bottom: -26%;
+  transform: rotate(-24deg);
+}
+
+.spray {
+  position: absolute;
+  width: min(44vw, 20rem);
+  height: auto;
+  opacity: 0.9;
+}
+
+.spray--bottom {
+  bottom: -1.5rem;
+  left: -2.5rem;
+}
+
+/* the same sprig turned to grow down from the top-right corner */
+.spray--top {
+  top: -1.5rem;
+  right: -2.5rem;
+  transform: rotate(180deg);
+}
+
+.pearl {
+  position: absolute;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 35% 30%, #fff, #efe9de 55%, #cdc4b1);
+  box-shadow: 0 1px 2px rgba(120, 110, 90, 0.25);
+}
+
+/* hero: the copy fills the lower left, so only the top-right sprig */
+.botanicals--hero .spray--bottom {
+  display: none;
+}
+
+.botanicals--hero .spray--top {
+  width: min(48vw, 26rem);
+}
+
+/* opening screen: on phones start the sprig below the date line; on larger screens the names reach the lower left */
+@media (max-width: 639px) {
+  .botanicals--opening .spray--top {
+    top: 5.5rem;
+  }
+}
+
+@media (min-width: 640px) {
+  .botanicals--opening .spray--bottom {
+    display: none;
+  }
+}
+
+/* closing band is short: tuck smaller sprigs into its corners */
+.botanicals--band .spray {
+  width: min(28vw, 11rem);
+}
+
+.botanicals--band .drape {
+  height: 140%;
 }
 

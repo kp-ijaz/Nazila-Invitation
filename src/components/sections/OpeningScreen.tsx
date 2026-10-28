@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useMusic } from "@/components/providers/MusicProvider";
+import { Botanicals } from "@/components/ui/DecorativeElements";
 import Monogram from "@/components/ui/Monogram";
 import ScriptName from "@/components/ui/ScriptName";
 import { COUPLE, EVENT } from "@/lib/constants";
@@ -57,7 +58,7 @@ export default function OpeningScreen() {
             }
           }}
         >
-          <div className="opening-glow" />
+          <Botanicals className="botanicals--opening" />
 
           <motion.div
             className="pointer-events-none relative z-10 flex h-full flex-col justify-between"
