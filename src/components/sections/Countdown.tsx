@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import FadeIn from "@/components/ui/FadeIn";
-import GlassCard from "@/components/ui/GlassCard";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { EVENT } from "@/lib/constants";
 
@@ -47,7 +46,7 @@ function CountdownDigit({ value }: { value: string }) {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 8 }}
         transition={{ duration: 0.3 }}
-        className="font-heading text-4xl font-medium text-gold sm:text-5xl md:text-6xl"
+        className="gold-foil-text block font-heading text-5xl font-light leading-none tabular-nums sm:text-8xl lg:text-[7.5rem]"
       >
         {value}
       </motion.span>
@@ -65,26 +64,24 @@ export default function Countdown() {
   }, []);
 
   return (
-    <section className="luxury-section-secondary px-6 py-24 sm:py-32">
-      <div className="mx-auto max-w-4xl">
+    <section className="section-alt px-6 py-14 sm:px-12 sm:py-20 lg:px-20">
+      <div className="mx-auto max-w-6xl">
         <FadeIn duration={1}>
-          <SectionHeading title="Countdown" subtitle="Until our blessed day" />
+          <SectionHeading title="Counting the Days" />
         </FadeIn>
 
         <FadeIn delay={0.15} duration={1}>
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-6">
-            {UNITS.map(({ key, label }) => (
-              <GlassCard
+          <div className="grid grid-cols-2 border-y border-gold/25 lg:grid-cols-4">
+            {UNITS.map(({ key, label }, i) => (
+              <div
                 key={key}
-                className="flex min-h-32 flex-col items-center justify-center px-3 py-6 sm:min-h-40 sm:px-6 sm:py-10"
+                className={`px-5 py-6 sm:px-8 sm:py-14 ${i % 2 === 1 ? "border-l border-gold/25" : ""} ${i >= 2 ? "border-t border-gold/25 lg:border-t-0 lg:border-l" : ""}`}
               >
                 <CountdownDigit
                   value={timeLeft ? String(timeLeft[key]).padStart(2, "0") : "--"}
                 />
-                <span className="mt-2 font-body text-xs tracking-[0.12em] uppercase text-text-secondary sm:mt-3 sm:tracking-[0.2em]">
-                  {label}
-                </span>
-              </GlassCard>
+                <span className="eyebrow mt-3 block text-ink-muted sm:mt-5">{label}</span>
+              </div>
             ))}
           </div>
         </FadeIn>

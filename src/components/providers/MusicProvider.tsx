@@ -110,8 +110,29 @@ export default function MusicProvider({ children }: { children: ReactNode }) {
 
     document.addEventListener("click", onLinkClick, { capture: true });
 
+    // app switch, home screen or tab change: pause and stay paused on return
+    const onVisibility = () => {
+      if (document.hidden) audio.pause();
+    };
+    // leaving the invitation: stop and rewind
+    const onPageHide = () => {
+      audio.pause();
+      audio.currentTime = 0;
+    };
+    // back-button return from the browser's page cache: start the session over
+    const onPageShow = (event: PageTransitionEvent) => {
+      if (event.persisted) window.location.reload();
+    };
+
+    document.addEventListener("visibilitychange", onVisibility);
+    window.addEventListener("pagehide", onPageHide);
+    window.addEventListener("pageshow", onPageShow);
+
     return () => {
       document.removeEventListener("click", onLinkClick, { capture: true });
+      document.removeEventListener("visibilitychange", onVisibility);
+      window.removeEventListener("pagehide", onPageHide);
+      window.removeEventListener("pageshow", onPageShow);
       audio.pause();
       audio.removeEventListener("play", onPlay);
       audio.removeEventListener("pause", onPause);

@@ -1,21 +1,27 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useMusic } from "@/components/providers/MusicProvider";
-import { LOGO } from "@/lib/constants";
+import Monogram from "@/components/ui/Monogram";
+import ScriptName from "@/components/ui/ScriptName";
+import { COUPLE, EVENT } from "@/lib/constants";
+import { useScrollLock } from "@/lib/useScrollLock";
 
 /**
- * M & A logo welcome — tap to enter and hear the nasheed.
+ * Editorial welcome — monogram top-left, names stacked large, tap to enter and hear the nasheed.
  */
 export default function OpeningScreen() {
   const { startMusic } = useMusic();
   const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
   const shouldReduceMotion = useReducedMotion();
+  useScrollLock(visible);
 
   useEffect(() => {
+    // every visit starts at the top, behind the opening screen
+    history.scrollRestoration = "manual";
+    window.scrollTo(0, 0);
     setMounted(true);
     setVisible(true);
   }, []);
@@ -33,11 +39,11 @@ export default function OpeningScreen() {
     <AnimatePresence>
       {visible && (
         <motion.section
-          className="fixed inset-0 z-[100] flex cursor-pointer items-center justify-center overflow-hidden bg-warm-white"
+          className="fixed inset-0 z-[100] flex cursor-pointer touch-none overscroll-none flex-col justify-between overflow-hidden bg-paper px-6 py-8 sm:px-12 sm:py-10 lg:px-20"
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          exit={{ opacity: 0, y: -40 }}
           transition={{
-            duration: shouldReduceMotion ? 0.25 : 0.9,
+            duration: shouldReduceMotion ? 0.25 : 1,
             ease: [0.4, 0, 0.2, 1],
           }}
           onClick={dismiss}
@@ -51,42 +57,38 @@ export default function OpeningScreen() {
             }
           }}
         >
-          <div className="opening-bg-layer" />
-          {!shouldReduceMotion && (
-            <motion.div
-              className="opening-shimmer-layer pointer-events-none"
-              initial={{ x: "-35%" }}
-              animate={{ x: "35%" }}
-              transition={{ duration: 2.4, ease: "easeInOut" }}
-            />
-          )}
+          <div className="opening-glow" />
 
           <motion.div
-            className="pointer-events-none relative z-10 flex flex-col items-center"
-            initial={
-              shouldReduceMotion
-                ? { opacity: 1, scale: 1 }
-                : { opacity: 0, scale: 0.86 }
-            }
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              duration: shouldReduceMotion ? 0.2 : 1.15,
-              ease: [0.22, 1, 0.36, 1],
-            }}
+            className="pointer-events-none relative z-10 flex h-full flex-col justify-between"
+            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: shouldReduceMotion ? 0.2 : 1.3, ease: [0.22, 1, 0.36, 1] }}
           >
-            <Image
-              src={LOGO.src}
-              alt={LOGO.alt}
-              width={1024}
-              height={665}
-              priority
-              className="opening-logo opening-calligraphy-glow"
-            />
-            {!shouldReduceMotion && (
-              <p className="opening-tap-hint mt-8 text-center font-body text-sm tracking-[0.22em] text-charcoal/55 uppercase">
-                Tap to open
+            <div className="flex items-center justify-between">
+              <Monogram size="4.5rem" />
+              <p className="eyebrow text-right">
+                Nikah Invitation
+                <span className="mt-1 block text-ink-muted">{EVENT.date}</span>
               </p>
-            )}
+            </div>
+
+            <div>
+              <p className="eyebrow mb-3">Together with our families</p>
+              <h1 className="display-name gold-foil-text"><ScriptName name={COUPLE.bride} /></h1>
+              <div className="my-1 flex items-center gap-6 sm:my-2">
+                <span className="font-heading text-6xl italic leading-none text-gold sm:text-8xl">&amp;</span>
+                <span className="ornamental-line w-32 sm:w-64" />
+              </div>
+              <h1 className="display-name gold-foil-text sm:ml-[8vw]"><ScriptName name={COUPLE.groom} /></h1>
+            </div>
+
+            <div className="flex items-end justify-between">
+              <p className="opening-tap-hint eyebrow text-ink-muted">Tap to open</p>
+              <p className="hidden font-heading text-xl font-light italic text-ink/70 sm:block">
+                {EVENT.venue}
+              </p>
+            </div>
           </motion.div>
         </motion.section>
       )}

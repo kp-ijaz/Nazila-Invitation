@@ -11,7 +11,7 @@ export default function MusicToggle() {
       <button
         type="button"
         onClick={toggle}
-        className={`relative flex h-14 w-14 items-center justify-center rounded-full border bg-ivory shadow-[0_10px_28px_rgba(184,134,11,0.22)] transition-all hover:shadow-[0_14px_36px_rgba(184,134,11,0.3)] ${
+        className={`relative flex h-14 w-14 items-center justify-center rounded-full border bg-surface shadow-[0_10px_28px_rgba(184,134,11,0.22)] transition-all hover:shadow-[0_14px_36px_rgba(184,134,11,0.3)] ${
           hasError
             ? "border-red-400 ring-2 ring-red-300/60"
             : isPlaying

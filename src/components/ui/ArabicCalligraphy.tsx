@@ -22,7 +22,7 @@ export default function ArabicCalligraphy({
 }: ArabicCalligraphyProps) {
   return (
     <p
-      className={`font-arabic text-text-primary ${sizeClasses[size]} ${className}`}
+      className={`font-arabic text-ink ${sizeClasses[size]} ${className}`}
       dir="rtl"
       lang="ar"
     >

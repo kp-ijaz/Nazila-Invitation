@@ -1,26 +1,24 @@
 "use client";
 
+import { toPng } from "html-to-image";
 import { INVITATION_CARD } from "@/lib/constants";
 
+// Renders the live hero card to PNG so the download always matches the page.
 export async function downloadInvitationCard(): Promise<void> {
+  const card = document.getElementById("invitation-card");
+  if (!card) return;
+
   try {
-    const response = await fetch(`${INVITATION_CARD.src}?v=${INVITATION_CARD.version}`, {
-      cache: "no-store",
+    const dataUrl = await toPng(card, {
+      pixelRatio: 2,
+      backgroundColor: "#faf6ee",
+      filter: (node) =>
+        !(node instanceof Element && node.hasAttribute("data-export-hide")),
     });
-
-    if (!response.ok) {
-      throw new Error("Invitation card image not found");
-    }
-
-    const blob = await response.blob();
-    const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.download = INVITATION_CARD.filename;
-    link.href = url;
-    document.body.appendChild(link);
+    link.href = dataUrl;
     link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
   } catch (error) {
     console.error("Failed to download invitation card:", error);
   }

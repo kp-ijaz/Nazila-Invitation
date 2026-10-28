@@ -2,126 +2,88 @@
 
 import Image from "next/image";
 import FadeIn from "@/components/ui/FadeIn";
-import OrnamentalDivider from "@/components/ui/OrnamentalDivider";
-import {
-  BabysBreath,
-  Crescent,
-  FloatingFloral,
-  GeometricPattern,
-  GoldCornerBorders,
-  GoldLeaf,
-  Lantern,
-  MosqueSilhouette,
-} from "@/components/ui/DecorativeElements";
-import ScrollIndicator from "@/components/ui/ScrollIndicator";
-import { COUPLE, EVENT, HERO, OPENING } from "@/lib/constants";
-
-function StyledCoupleName({ name }: { name: string }) {
-  const words = name.trim().split(/\s+/);
-
-  return (
-    <h1 className="couple-name couple-name-gold">
-      {words.map((word, wordIndex) => (
-        <span key={`${word}-${wordIndex}`} className="couple-name-word">
-          {wordIndex > 0 ? "\u00A0" : null}
-          <span className="couple-name-initial">{word.charAt(0).toUpperCase()}</span>
-          <span className="couple-name-rest">{word.slice(1).toLowerCase()}</span>
-        </span>
-      ))}
-    </h1>
-  );
-}
+import GuestGreeting from "@/components/ui/GuestGreeting";
+import ScriptName from "@/components/ui/ScriptName";
+import { BISMILLAH, COUPLE, EVENT, HERO, PHOTOS } from "@/lib/constants";
 
 export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex min-h-[100dvh] items-center justify-center overflow-hidden luxury-section-primary px-4 py-16 sm:px-6 sm:py-32"
+      className="relative flex items-center overflow-hidden px-6 pt-[46vh] pb-12 sm:px-12 lg:min-h-[92dvh] lg:px-20 lg:pt-24"
     >
-      <GeometricPattern />
-      <MosqueSilhouette />
-      <FloatingFloral className="top-20 left-6 sm:left-16" />
-      <FloatingFloral className="top-28 right-6 sm:right-16" />
-      <BabysBreath className="bottom-40 left-10 hidden sm:block" />
-      <GoldLeaf className="top-32 right-20 hidden md:block" />
-      <GoldLeaf className="bottom-28 left-20 hidden md:block" />
-      <Lantern className="top-16 left-1/4 hidden lg:block" />
-      <Lantern className="top-16 right-1/4 hidden lg:block" />
-      <Crescent className="top-20 right-1/3 hidden lg:block" />
+      <div className="hero-photo" aria-hidden>
+        <Image src={PHOTOS.couple.src} alt="" fill priority sizes="(max-width: 1024px) 100vw, 60vw" />
+      </div>
+      <div className="hero-glow" aria-hidden />
+
+      <p className="side-text eyebrow hidden lg:block">
+        {HERO.ceremony} &nbsp;·&nbsp; {EVENT.dateMonthYear}
+      </p>
 
       <div
         id="invitation-card"
-        className="embossed-frame ornate-panel relative z-10 mx-auto w-full max-w-4xl rounded-sm bg-ivory px-5 py-12 text-center shadow-[0_20px_60px_rgba(184,134,11,0.14)] backdrop-blur-sm sm:px-16 sm:py-24"
+        className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16"
       >
-        <GoldCornerBorders />
-
-        <FadeIn duration={1.15}>
-          <div className="mx-auto flex max-w-3xl flex-col items-center pt-2 sm:pt-4">
-            <div className="ornamental-line mb-5 w-20 sm:mb-6 sm:w-24" />
-            <div className="bismillah-heading relative mx-auto w-[min(100%,22rem)] sm:w-[28rem]">
-              <Image
-                src={OPENING.bismillah.src}
-                alt={OPENING.bismillah.alt}
-                width={948}
-                height={314}
-                priority
-                className="mx-auto h-auto w-full object-contain"
-                sizes="(max-width: 640px) 22rem, 28rem"
-              />
-            </div>
-            <div className="ornamental-line mt-5 w-20 sm:mt-6 sm:w-24" />
-          </div>
-        </FadeIn>
-
-        <FadeIn delay={0.25} duration={1.2} scale>
-          <div className="couple-name-stack mt-12 sm:mt-16">
-            <StyledCoupleName name={COUPLE.groom} />
-            <OrnamentalDivider className="couple-divider sm:my-8" />
-            <StyledCoupleName name={COUPLE.bride} />
-          </div>
-        </FadeIn>
-
-        <FadeIn delay={0.45} duration={1}>
-          <div className="mt-8 sm:mt-12">
-            <p className="font-body text-xs tracking-[0.12em] uppercase text-text-secondary sm:text-sm sm:tracking-[0.2em]">
-              {HERO.subtitle}
+        <div>
+          <FadeIn duration={1.1}>
+            <p className="bismillah gold-foil-text font-arabic text-left" dir="rtl" lang="ar">
+              {BISMILLAH}
             </p>
-            <p className="hero-support-copy mt-3 font-heading text-lg font-light leading-relaxed sm:mt-4 sm:text-2xl">
+          </FadeIn>
+
+          <FadeIn delay={0.2} duration={1}>
+            <div className="mt-10 sm:mt-5">
+              <GuestGreeting />
+              <p className="eyebrow">{HERO.subtitle}</p>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.35} duration={1.2}>
+            <div className="mt-2">
+              <h1 className="display-name gold-foil-text">
+                <ScriptName name={COUPLE.bride} />
+              </h1>
+              <div className="my-1 flex items-center gap-6 sm:my-2">
+                <span className="font-heading text-6xl italic leading-none text-gold sm:text-8xl">&amp;</span>
+                <span className="ornamental-line w-24 sm:w-56" />
+              </div>
+              <h1 className="display-name gold-foil-text sm:ml-[6vw]">
+                <ScriptName name={COUPLE.groom} />
+              </h1>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.55} duration={1}>
+            <p className="mt-6 max-w-md font-heading text-2xl font-light italic text-ink/85 sm:text-3xl">
               {HERO.invitation}
             </p>
+            <dl className="mt-6 grid max-w-md grid-cols-2 gap-x-6 gap-y-5 border-t border-gold/30 pt-6">
+              <div>
+                <dt className="eyebrow">Date</dt>
+                <dd className="mt-1 font-heading text-xl font-light text-ink">{EVENT.date}</dd>
+              </div>
+              <div>
+                <dt className="eyebrow">Time</dt>
+                <dd className="mt-1 font-heading text-xl font-light text-gold-soft">{EVENT.nikahTime}</dd>
+              </div>
+              <div className="col-span-2">
+                <dt className="eyebrow">Venue</dt>
+                <dd className="mt-1 font-heading text-xl font-light text-ink">
+                  {EVENT.venue}, {EVENT.address}
+                </dd>
+              </div>
+            </dl>
+          </FadeIn>
+        </div>
+
+        <div className="relative hidden min-h-[55vh] lg:block">
+          <div className="date-stamp absolute right-0 bottom-0">
+            <p className="font-heading text-sm italic text-gold">{EVENT.dateDay}</p>
+            <p className="font-heading text-6xl font-light leading-none text-ink">{EVENT.dateNumber}</p>
+            <p className="eyebrow mt-2 text-xs">{EVENT.dateMonthYear}</p>
           </div>
-        </FadeIn>
-
-        <FadeIn delay={0.55} duration={1}>
-          <div className="mt-9 space-y-1 sm:mt-12 sm:space-y-2">
-            <p className="font-heading text-xl font-medium text-text-primary sm:text-3xl">
-              {EVENT.dateDay}
-            </p>
-            <p className="font-heading text-xl font-light text-text-primary sm:text-3xl">
-              {EVENT.dateRest}
-            </p>
-          </div>
-        </FadeIn>
-
-        <FadeIn delay={0.7} duration={1}>
-          <div className="mt-8 sm:mt-10">
-            <p className="font-body text-xs tracking-[0.14em] uppercase text-text-secondary sm:tracking-[0.3em]">
-              {HERO.ceremony}
-            </p>
-            <p className="mt-2 font-heading text-3xl text-gold sm:mt-3 sm:text-5xl">
-              {EVENT.nikahTime}
-            </p>
-          </div>
-        </FadeIn>
-
-        <FadeIn delay={0.85} duration={1}>
-          <p className="mx-auto mt-8 max-w-2xl font-body text-sm leading-relaxed text-text-secondary italic sm:mt-12 sm:text-lg sm:leading-loose">
-            {HERO.closingLine}
-          </p>
-        </FadeIn>
-
-        <div className="ornamental-line mx-auto mt-8 w-36 sm:mt-10 sm:w-48" />
-        <ScrollIndicator exportHide />
+        </div>
       </div>
     </section>
   );
