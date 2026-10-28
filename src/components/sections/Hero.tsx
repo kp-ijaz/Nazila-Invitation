@@ -25,26 +25,26 @@ export default function Hero() {
       >
         <div>
           <FadeIn duration={1.1}>
-            <p className="bismillah gold-foil-text font-arabic text-left" dir="rtl" lang="ar">
+            <p className="bismillah gold-foil-text font-arabic text-center sm:text-left" dir="rtl" lang="ar">
               {BISMILLAH}
             </p>
           </FadeIn>
 
           <FadeIn delay={0.2} duration={1}>
-            <div className="mt-10 sm:mt-5">
+            <div className="mt-10 text-center sm:mt-5 sm:text-left">
               <GuestGreeting />
               <p className="eyebrow">{HERO.subtitle}</p>
             </div>
           </FadeIn>
 
           <FadeIn delay={0.35} duration={1.2}>
-            <div className="mt-2">
+            <div className="mt-2 text-center sm:text-left">
               <h1 className="display-name gold-foil-text">
                 <ScriptName name={COUPLE.bride} />
               </h1>
-              <div className="my-1 flex items-center gap-6 sm:my-2">
+              <div className="my-1 flex items-center justify-center gap-6 sm:my-2 sm:justify-start">
                 <span className="font-heading text-6xl italic leading-none text-gold sm:text-8xl">&amp;</span>
-                <span className="ornamental-line w-24 sm:w-56" />
+                <span className="ornamental-line hidden sm:block sm:w-56" />
               </div>
               <h1 className="display-name gold-foil-text sm:ml-[6vw]">
                 <ScriptName name={COUPLE.groom} />
@@ -53,7 +53,7 @@ export default function Hero() {
           </FadeIn>
 
           <FadeIn delay={0.55} duration={1}>
-            <p className="mt-6 max-w-md font-heading text-2xl font-light italic text-ink/85 sm:text-3xl">
+            <p className="mx-auto mt-6 max-w-md text-center font-heading text-2xl font-light italic text-ink/85 sm:mx-0 sm:text-left sm:text-3xl">
               {HERO.invitation}
             </p>
             <dl className="mt-6 grid max-w-md grid-cols-2 gap-x-6 gap-y-5 border-t border-gold/30 pt-6">
