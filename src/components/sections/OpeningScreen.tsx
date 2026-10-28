@@ -74,17 +74,17 @@ export default function OpeningScreen() {
               </p>
             </div>
 
-            <div>
+            <div className="text-center sm:text-left">
               <p className="eyebrow mb-3">Together with our families</p>
               <h1 className="display-name gold-foil-text"><ScriptName name={COUPLE.bride} /></h1>
-              <div className="my-1 flex items-center gap-6 sm:my-2">
+              <div className="my-1 flex items-center justify-center gap-6 sm:my-2 sm:justify-start">
                 <span className="font-heading text-6xl italic leading-none text-gold sm:text-8xl">&amp;</span>
-                <span className="ornamental-line w-32 sm:w-64" />
+                <span className="ornamental-line hidden sm:block sm:w-64" />
               </div>
               <h1 className="display-name gold-foil-text sm:ml-[8vw]"><ScriptName name={COUPLE.groom} /></h1>
             </div>
 
-            <div className="flex items-end justify-between">
+            <div className="flex items-end justify-center sm:justify-between">
               <p className="opening-tap-hint eyebrow text-ink-muted">Tap to open</p>
               <p className="hidden font-heading text-xl font-light italic text-ink/70 sm:block">
                 {EVENT.venue}

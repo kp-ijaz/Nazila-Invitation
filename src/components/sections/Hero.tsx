@@ -56,7 +56,7 @@ export default function Hero() {
             <p className="mx-auto mt-6 max-w-md text-center font-heading text-2xl font-light italic text-ink/85 sm:mx-0 sm:text-left sm:text-3xl">
               {HERO.invitation}
             </p>
-            <dl className="mt-6 grid max-w-md grid-cols-2 gap-x-6 gap-y-5 border-t border-gold/30 pt-6">
+            <dl className="mx-auto mt-6 grid max-w-md grid-cols-2 gap-x-6 gap-y-5 border-t border-gold/30 pt-6 text-center sm:mx-0 sm:text-left">
               <div>
                 <dt className="eyebrow">Date</dt>
                 <dd className="mt-1 font-heading text-xl font-light text-ink">{EVENT.date}</dd>
