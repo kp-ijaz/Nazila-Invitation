@@ -17,6 +17,20 @@
   --font-display: var(--font-cormorant);
   --font-arabic: var(--font-amiri);
   --font-malayalam: var(--font-noto-malayalam);
+
+  /* type scale set 3–4px below Tailwind's defaults */
+  --text-xs: 0.625rem;
+  --text-sm: 0.6875rem;
+  --text-base: 0.8125rem;
+  --text-lg: 0.9375rem;
+  --text-xl: 1.0625rem;
+  --text-2xl: 1.25rem;
+  --text-3xl: 1.625rem;
+  --text-4xl: 2rem;
+  --text-5xl: 2.75rem;
+  --text-6xl: 3.5rem;
+  --text-7xl: 4.25rem;
+  --text-8xl: 5.75rem;
 }
 
 :root {
@@ -39,7 +53,7 @@ body {
   background-color: var(--paper);
   color: var(--ink);
   font-family: var(--font-cormorant), Georgia, serif;
-  font-size: 1.0625rem;
+  font-size: 0.875rem;
   overflow-x: hidden;
 }
 
@@ -89,14 +103,14 @@ body {
 .eyebrow {
   font-family: var(--font-cormorant), Georgia, serif;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   letter-spacing: 0.14em;
   color: var(--gold);
 }
 
 @media (min-width: 640px) {
   .eyebrow {
-    font-size: 1rem;
+    font-size: 0.8125rem;
   }
 }
 
@@ -188,7 +202,7 @@ body {
 .display-name {
   font-family: var(--font-allura), var(--font-cormorant), cursive;
   font-weight: 400;
-  font-size: clamp(4.2rem, 16vw, 11rem);
+  font-size: calc(clamp(4.2rem, 16vw, 11rem) - 4px);
   line-height: 1;
   letter-spacing: 0.01em;
   /* gradient is clipped to the box: pad so swashes and descenders stay gold, then pull spacing back */
@@ -240,7 +254,7 @@ body {
 
 
 .bismillah {
-  font-size: clamp(1.9rem, 6vw, 3rem);
+  font-size: calc(clamp(1.9rem, 6vw, 3rem) - 4px);
   line-height: 1.6;
   letter-spacing: 0.01em;
 }
@@ -434,7 +448,7 @@ body {
 .hero-amp {
   display: block;
   margin: 0.15em 0 0.05em;
-  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-size: calc(clamp(1.6rem, 4vw, 2.2rem) - 4px);
   line-height: 1;
 }
 
@@ -446,7 +460,7 @@ body {
 
 /* the groom's full name has to fit on one line, so hero names run smaller than other display names */
 .display-name.hero-name {
-  font-size: clamp(3rem, 12.8vw, 6.4rem);
+  font-size: calc(clamp(3rem, 12.8vw, 6.4rem) - 4px);
 }
 
 /* the title is set like the name itself, a step smaller, so "Dr." reads as part of it */

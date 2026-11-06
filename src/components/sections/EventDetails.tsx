@@ -15,7 +15,7 @@ const ROWS = [
 // sm: definition-list rows separated by hairlines; lg: one row of centred cells split by vertical hairlines
 const rowClass =
   "sm:grid sm:grid-cols-[12rem_1fr] sm:gap-6 sm:border-t sm:border-gold/20 sm:py-9 lg:flex lg:flex-col lg:items-center lg:gap-0 lg:border-t-0 lg:border-l lg:px-5 lg:py-10 lg:text-center";
-const valueClass = "mt-2 font-heading text-2xl font-light text-ink sm:mt-0 sm:text-4xl lg:mt-3 lg:text-[1.65rem] lg:leading-snug";
+const valueClass = "mt-2 font-heading text-2xl font-light text-ink sm:mt-0 sm:text-4xl lg:mt-3 lg:text-[1.4rem] lg:leading-snug";
 
 function Row({ label, value, index, className = "" }: { label: string; value: string; index: number; className?: string }) {
   return (

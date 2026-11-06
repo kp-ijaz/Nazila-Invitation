@@ -9,7 +9,7 @@ export default function SectionHeading({ title }: { title: string }) {
 
   return (
     <div className="mb-8 flex items-center gap-3 sm:mb-10 sm:gap-4">
-      <h2 className="font-display text-[1.6rem] font-medium tracking-[0.04em] whitespace-nowrap text-ink sm:text-4xl sm:tracking-[0.06em]">
+      <h2 className="font-display text-[1.375rem] font-medium tracking-[0.04em] whitespace-nowrap text-ink sm:text-4xl sm:tracking-[0.06em]">
         <RevealWords text={title} />
       </h2>
       {/* the ornament unfurls after the title has risen */}

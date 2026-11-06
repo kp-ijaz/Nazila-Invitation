@@ -2,16 +2,15 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion, useScroll, useTransform, type Variants } from "framer-motion";
-import CoverMark from "@/components/ui/CoverMark";
 import GuestGreeting from "@/components/ui/GuestGreeting";
 import ScriptName from "@/components/ui/ScriptName";
-import { COUPLE, HERO, INVITATION_OPENED } from "@/lib/constants";
+import { BISMILLAH, COUPLE, HERO, INVITATION_OPENED } from "@/lib/constants";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-// names follow once the monogram has started drawing
+// the Bismillah rises first, then the names follow
 const sequence: Variants = {
-  shown: { transition: { staggerChildren: 0.22, delayChildren: 0.9 } },
+  shown: { transition: { staggerChildren: 0.22, delayChildren: 0.3 } },
 };
 
 // soft-focus rise
@@ -20,7 +19,7 @@ const rise: Variants = {
   shown: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 1.4, ease: EASE } },
 };
 
-/** Quiet first section: the monogram, the names, one line — and space. */
+/** Quiet first section: the Bismillah, the names, one line — and space. */
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
@@ -49,7 +48,9 @@ export default function Hero() {
           animate={shown ? "shown" : "hidden"}
           variants={sequence}
         >
-          <div className="hero-mark">{shown ? <CoverMark entering={false} /> : null}</div>
+          <motion.p variants={rise} lang="ar" dir="rtl" className="bismillah font-arabic gold-foil-text">
+            {BISMILLAH}
+          </motion.p>
 
           <motion.div variants={rise} className="hero-gap-lg">
             <GuestGreeting />

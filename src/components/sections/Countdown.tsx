@@ -39,7 +39,7 @@ const UNITS: { key: keyof TimeLeft; label: string }[] = [
 ];
 
 const digitClass =
-  "gold-foil-text block font-heading text-5xl font-light leading-none tabular-nums sm:text-8xl lg:text-[7.5rem]";
+  "gold-foil-text block font-heading text-5xl font-light leading-none tabular-nums sm:text-8xl lg:text-[7.25rem]";
 
 function CountdownDigit({ value, counting }: { value: string; counting: boolean }) {
   // while counting up the value changes every frame, so skip the per-change flip
