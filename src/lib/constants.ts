@@ -3,6 +3,8 @@ export const COUPLE = {
   groom: "Aqib",
   shortName: "Nazila & Aqib",
   monogram: ["N", "A"],
+  groomTitle: "Dr.",
+  groomFull: "Mohmed Aqib",
 };
 
 export const BISMILLAH = "بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ";
@@ -15,7 +17,6 @@ export const HERO = {
   subtitle: "Together with our beloved families",
   invitation: "Request the honour of your presence at our Nikah.",
   ceremony: "Nikah Ceremony",
-  closingLine: "Your presence and heartfelt duas will be our greatest blessing.",
 };
 
 export const QURAN_VERSE = {
@@ -81,3 +82,6 @@ export const AUDIO = {
   ],
   volume: 0.35,
 };
+
+// fired when the guest taps through the opening screen, so the first section can play its entrance
+export const INVITATION_OPENED = "invitation-opened";

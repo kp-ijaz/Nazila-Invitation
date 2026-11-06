@@ -2,6 +2,7 @@ import CalendarActions from "@/components/ui/CalendarActions";
 import FadeIn from "@/components/ui/FadeIn";
 import OrnamentalDivider from "@/components/ui/OrnamentalDivider";
 import SectionHeading from "@/components/ui/SectionHeading";
+import { Rise } from "@/components/ui/Motion";
 import { EVENT } from "@/lib/constants";
 
 const ROWS = [
@@ -16,12 +17,12 @@ const rowClass =
   "sm:grid sm:grid-cols-[12rem_1fr] sm:gap-6 sm:border-t sm:border-gold/20 sm:py-9 lg:flex lg:flex-col lg:items-center lg:gap-0 lg:border-t-0 lg:border-l lg:px-5 lg:py-10 lg:text-center";
 const valueClass = "mt-2 font-heading text-2xl font-light text-ink sm:mt-0 sm:text-4xl lg:mt-3 lg:text-[1.65rem] lg:leading-snug";
 
-function Row({ label, value, className = "" }: { label: string; value: string; className?: string }) {
+function Row({ label, value, index, className = "" }: { label: string; value: string; index: number; className?: string }) {
   return (
-    <div className={`${rowClass} ${className}`}>
+    <Rise index={index} className={`${rowClass} ${className}`}>
       <dt className="eyebrow sm:pt-3 lg:pt-0">{label}</dt>
       <dd className={valueClass}>{value}</dd>
-    </div>
+    </Rise>
   );
 }
 
@@ -40,13 +41,13 @@ export default function EventDetails() {
               <span className="ornamental-vline sm:hidden" aria-hidden />
               <OrnamentalDivider className="absolute top-1/2 left-1/2 !my-0 -translate-x-1/2 -translate-y-1/2 sm:hidden" />
               {ROWS.map(({ label, value }, i) => (
-                <Row key={label} label={label} value={value} className={`${i % 2 === 0 ? "pr-5 sm:pr-0" : "pl-6 sm:pl-0"} ${i === 0 ? "lg:border-l-0" : ""}`} />
+                <Row key={label} index={i} label={label} value={value} className={`${i % 2 === 0 ? "pr-5 sm:pr-0" : "pl-6 sm:pl-0"} ${i === 0 ? "lg:border-l-0" : ""}`} />
               ))}
             </div>
 
             <OrnamentalDivider className="my-7 sm:hidden" />
 
-            <div className={`${rowClass} sm:border-b lg:border-b-0`}>
+            <Rise index={4} className={`${rowClass} sm:border-b lg:border-b-0`}>
               <dt className="eyebrow sm:pt-3 lg:pt-0">Address</dt>
               <dd className={valueClass}>
                 {EVENT.address}
@@ -57,7 +58,7 @@ export default function EventDetails() {
                   View map &darr;
                 </a>
               </dd>
-            </div>
+            </Rise>
           </dl>
         </FadeIn>
 

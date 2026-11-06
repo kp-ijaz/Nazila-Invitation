@@ -14,12 +14,12 @@ export default function LocationJump() {
     <button
       type="button"
       onClick={scrollToLocation}
-      className="location-jump relative flex h-14 w-14 items-center justify-center rounded-full border border-gold/60 bg-surface shadow-[0_10px_28px_rgba(184,134,11,0.22)] transition-all hover:border-gold hover:shadow-[0_14px_36px_rgba(184,134,11,0.3)]"
+      className="location-jump relative flex h-11 w-11 items-center justify-center rounded-full border sm:h-14 sm:w-14 border-gold/60 bg-surface/85 backdrop-blur-sm shadow-[0_6px_18px_rgba(107,67,25,0.12)] transition-all hover:border-gold"
       aria-label="View location"
     >
       <span className="location-jump-ping" aria-hidden />
       <MapPin
-        className="location-jump-icon relative z-10 h-6 w-6 text-gold"
+        className="location-jump-icon relative z-10 h-5 w-5 text-gold sm:h-6 sm:w-6"
         strokeWidth={2}
       />
     </button>

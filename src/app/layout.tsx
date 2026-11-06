@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Allura, Amiri, Cormorant_Garamond, Noto_Serif_Malayalam } from "next/font/google";
+import { Allura, Amiri, Cormorant_Garamond, Mrs_Saint_Delafield, Noto_Serif_Malayalam } from "next/font/google";
 import { COUPLE, EVENT } from "@/lib/constants";
 import "./globals.css";
 
@@ -15,6 +15,14 @@ const allura = Allura({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-allura",
+  display: "swap",
+});
+
+// only used for the tall calligraphic ampersand in the cover monogram
+const ampersand = Mrs_Saint_Delafield({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-ampersand",
   display: "swap",
 });
 
@@ -71,7 +79,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${allura.variable} ${amiri.variable} ${malayalam.variable}`}
+      className={`${cormorant.variable} ${allura.variable} ${amiri.variable} ${malayalam.variable} ${ampersand.variable}`}
     >
       <head>
         <link

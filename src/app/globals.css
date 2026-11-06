@@ -5,11 +5,11 @@
   --color-paper-2: #f3ecdf;
   --color-surface: #fffdf8;
   --color-surface-2: #f6efe2;
-  --color-gold: #a9832f;
-  --color-gold-soft: #c9a04a;
-  --color-gold-deep: #86681f;
-  --color-ink: #1f1a14;
-  --color-ink-muted: #6f6556;
+  --color-gold: #8a5a26;
+  --color-gold-soft: #b08a5b;
+  --color-gold-deep: #6b4319;
+  --color-ink: #2a211a;
+  --color-ink-muted: #7b6f62;
 
   --font-heading: var(--font-cormorant);
   --font-body: var(--font-cormorant);
@@ -23,12 +23,12 @@
   --paper: #faf6ee;
   --paper-2: #f3ecdf;
   --surface: #fffdf8;
-  --gold: #a9832f;
-  --gold-soft: #c9a04a;
-  --gold-deep: #86681f;
-  --ink: #1f1a14;
-  --ink-muted: #6f6556;
-  --line: rgba(169, 131, 47, 0.3);
+  --gold: #8a5a26;
+  --gold-soft: #b08a5b;
+  --gold-deep: #6b4319;
+  --ink: #2a211a;
+  --ink-muted: #7b6f62;
+  --line: rgba(138, 90, 38, 0.28);
 }
 
 html {
@@ -57,49 +57,18 @@ body {
   }
 }
 
-/* ---------- page canvas: fixed lattice + vignette under everything ---------- */
-
-.page-canvas {
-  position: relative;
-}
-
-.page-canvas::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse at 50% 0%, rgba(212, 175, 90, 0.12), transparent 55%),
-    radial-gradient(ellipse at 50% 100%, rgba(212, 175, 90, 0.06), transparent 50%);
-  opacity: 1;
-}
-
-.page-canvas::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background: var(--paper);
-  opacity: 0.88;
-}
-
+/* alternate sections sit on a slightly deeper cream */
 .section-alt {
-  background: linear-gradient(180deg, rgba(243, 236, 223, 0.9), rgba(250, 246, 238, 0) 60%);
+  background: rgba(243, 236, 223, 0.55);
 }
 
 /* ---------- gold text & lines ---------- */
 
 .gold-foil-text {
-  background: linear-gradient(135deg, #86681f 0%, #d4b263 35%, #b8912f 60%, #86681f 100%);
+  background: linear-gradient(135deg, #7a4e1f 0%, #a87a45 50%, #7a4e1f 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-.gold-metallic {
-  background: linear-gradient(135deg, #b8912f 0%, #d4b263 35%, #ecd79a 55%, #d4b263 75%, #b8912f 100%);
 }
 
 .ornamental-line {
@@ -135,14 +104,9 @@ body {
 
 .glass-card {
   position: relative;
-  background: linear-gradient(160deg, rgba(255, 253, 248, 0.94), rgba(246, 239, 226, 0.82));
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 0.25rem;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.9),
-    0 24px 60px rgba(134, 104, 31, 0.14);
 }
 
 .ornate-panel {
@@ -156,21 +120,11 @@ body {
   content: "";
   position: absolute;
   inset: 7px;
-  border: 1px solid rgba(212, 175, 90, 0.18);
+  border: 1px solid rgba(176, 138, 91, 0.18);
   border-radius: 0.15rem;
   pointer-events: none;
 }
 
-
-.hero-glow {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 50% 35%, rgba(212, 175, 90, 0.22), transparent 42%),
-    radial-gradient(circle at 15% 85%, rgba(212, 175, 90, 0.08), transparent 35%),
-    radial-gradient(circle at 85% 15%, rgba(212, 175, 90, 0.08), transparent 35%);
-}
 
 /* ---------- monogram ---------- */
 
@@ -181,10 +135,10 @@ body {
   width: var(--ring-size, 11rem);
   height: var(--ring-size, 11rem);
   border-radius: 9999px;
-  border: 1px solid rgba(212, 175, 90, 0.35);
+  border: 1px solid rgba(176, 138, 91, 0.35);
   box-shadow:
-    inset 0 0 40px rgba(212, 175, 90, 0.08),
-    0 0 60px rgba(212, 175, 90, 0.12);
+    inset 0 0 40px rgba(176, 138, 91, 0.08),
+    0 0 60px rgba(176, 138, 91, 0.12);
 }
 
 .monogram-ring::before {
@@ -192,7 +146,7 @@ body {
   position: absolute;
   inset: -10px;
   border-radius: 9999px;
-  border: 1px dashed rgba(212, 175, 90, 0.45);
+  border: 1px dashed rgba(176, 138, 91, 0.45);
   animation: ringSpin 40s linear infinite;
 }
 
@@ -201,7 +155,7 @@ body {
   position: absolute;
   inset: 8px;
   border-radius: 9999px;
-  border: 1px solid rgba(241, 217, 146, 0.2);
+  border: 1px solid rgba(214, 190, 150, 0.2);
 }
 
 .monogram {
@@ -213,7 +167,6 @@ body {
   line-height: 1;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  filter: drop-shadow(0 0 18px rgba(241, 217, 146, 0.35));
 }
 
 .monogram-amp {
@@ -241,15 +194,30 @@ body {
   /* gradient is clipped to the box: pad so swashes and descenders stay gold, then pull spacing back */
   padding: 0.1em 0.15em 0.3em 0;
   margin-block: -0.1em -0.3em;
-  filter: drop-shadow(0 6px 24px rgba(134, 104, 31, 0.18));
 }
 
-.side-text {
-  position: absolute;
-  left: 1.25rem;
-  top: 50%;
-  transform: translateY(-50%) rotate(180deg);
-  writing-mode: vertical-rl;
+
+
+/* ---------- scroll motion ---------- */
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 95;
+  height: 2px;
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, var(--gold-soft), var(--gold));
+}
+
+/* clips each word while it rises; the padding keeps descenders visible */
+.reveal-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
 }
 
 .marquee {
@@ -260,7 +228,7 @@ body {
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee 40s linear infinite;
+  will-change: transform;
 }
 
 .marquee-track > span {
@@ -268,11 +236,6 @@ body {
   white-space: nowrap;
 }
 
-@keyframes marquee {
-  to {
-    transform: translateX(-50%);
-  }
-}
 
 
 
@@ -280,7 +243,6 @@ body {
   font-size: clamp(1.9rem, 6vw, 3rem);
   line-height: 1.6;
   letter-spacing: 0.01em;
-  filter: drop-shadow(0 0 14px rgba(241, 217, 146, 0.22));
 }
 
 
@@ -302,28 +264,6 @@ body {
   filter: sepia(0.2) saturate(0.85);
 }
 
-/* ---------- buttons / shimmer ---------- */
-
-.gold-shimmer {
-  position: relative;
-  overflow: hidden;
-}
-
-.gold-shimmer::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -120%;
-  width: 120%;
-  height: 100%;
-  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.35), transparent);
-  transition: left 0.75s ease;
-}
-
-.gold-shimmer:hover::after {
-  left: 110%;
-}
-
 /* ---------- floating controls ---------- */
 
 .location-jump-ping,
@@ -331,7 +271,7 @@ body {
   position: absolute;
   inset: 0;
   border-radius: 9999px;
-  border: 1.5px solid rgba(212, 175, 90, 0.5);
+  border: 1.5px solid rgba(176, 138, 91, 0.5);
   animation: locationJumpPing 2.4s ease-out infinite;
   pointer-events: none;
 }
@@ -342,7 +282,7 @@ body {
 }
 
 .music-toggle-active {
-  box-shadow: 0 10px 28px rgba(212, 175, 90, 0.35);
+  box-shadow: 0 10px 28px rgba(176, 138, 91, 0.35);
 }
 
 .music-toggle-idle,
@@ -387,9 +327,16 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .monogram-ring::before,
   .marquee-track,
+  .opening-aura::before,
+  .opening-aura::after,
+  .cover-ring,
+  .cover-rise,
+  .cover-amp,
+  .cover-stem,
+  .cover-leaf,
+  .cover-sprig,
   .thank-you-halo::before,
   .thank-you-halo::after,
-  .gold-shimmer::after,
   .location-jump-ping,
   .location-jump-icon,
   .music-toggle-ping,
@@ -420,18 +367,13 @@ body {
     -webkit-text-fill-color: var(--gold);
     color: var(--gold);
   }
-
-  .page-canvas::before,
-  .page-canvas::after {
-    position: absolute;
-  }
 }
 
 /* ---------- RSVP thank-you screen ---------- */
 
 .thank-you {
   background:
-    radial-gradient(circle at 50% 28%, rgba(212, 178, 99, 0.22), transparent 45%),
+    radial-gradient(circle at 50% 28%, rgba(176, 138, 91, 0.22), transparent 45%),
     rgba(250, 246, 238, 0.94);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -450,7 +392,7 @@ body {
   position: absolute;
   inset: -12px;
   border-radius: 9999px;
-  border: 1px solid rgba(169, 131, 47, 0.45);
+  border: 1px solid rgba(138, 90, 38, 0.45);
   animation: haloPulse 3s ease-out infinite;
 }
 
@@ -471,117 +413,212 @@ body {
 
 /* ---------- photo, nav, closing band ---------- */
 
-.topline {
-  height: 4px;
-  background: linear-gradient(90deg, #52695a, #a88550, #b98779, #52695a);
+/* first section: monogram, names, one line — spacing scales with screen height so it always fits one screen */
+.hero-mark {
+  width: clamp(6.5rem, min(26vw, 15dvh), 9.5rem);
+  aspect-ratio: 1;
 }
 
-
-.date-stamp {
-  width: max-content;
-  padding: 1.25rem 1.5rem;
-  background: var(--paper);
-  border: 1px solid var(--line);
-  box-shadow: 0 18px 40px rgba(134, 104, 31, 0.16);
+.hero-mark .cover-mark {
+  width: 100%;
 }
 
-.date-stamp::before {
-  content: "";
-  position: absolute;
-  inset: 5px;
-  border: 1px solid rgba(169, 131, 47, 0.25);
-  pointer-events: none;
+.hero-gap-lg {
+  margin-top: clamp(1.75rem, 6dvh, 4rem);
 }
 
-/* ---------- ivory botanical backdrop ---------- */
+.hero-gap-md {
+  margin-top: clamp(1.5rem, 4.5dvh, 3rem);
+}
 
-.botanicals {
+.hero-amp {
+  display: block;
+  margin: 0.15em 0 0.05em;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  line-height: 1;
+}
+
+.is-exporting,
+.is-exporting * {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* the groom's full name has to fit on one line, so hero names run smaller than other display names */
+.display-name.hero-name {
+  font-size: clamp(3rem, 12.8vw, 6.4rem);
+}
+
+/* the title is set like the name itself, a step smaller, so "Dr." reads as part of it */
+.name-title {
+  font-size: 0.52em;
+  margin-right: 0.08em;
+}
+
+/* ---------- tap-to-open screen ---------- */
+
+/* two very soft pools of colour drifting behind the monogram */
+.opening-aura {
   position: absolute;
   inset: 0;
   overflow: hidden;
   pointer-events: none;
 }
 
-/* sage chiffon: soft folds faded out at the edges */
-.drape {
+.opening-aura::before,
+.opening-aura::after {
+  content: "";
   position: absolute;
-  width: 70%;
-  height: 60%;
-  background:
-    repeating-linear-gradient(112deg, rgba(150, 162, 132, 0.14) 0 16px, rgba(150, 162, 132, 0.03) 16px 38px),
-    repeating-linear-gradient(124deg, rgba(150, 162, 132, 0.08) 0 24px, transparent 24px 52px),
-    radial-gradient(ellipse at center, rgba(176, 186, 160, 0.5), transparent 70%);
-  filter: blur(9px);
-  -webkit-mask-image: radial-gradient(ellipse at center, #000 20%, transparent 70%);
-  mask-image: radial-gradient(ellipse at center, #000 20%, transparent 70%);
-}
-
-.drape--top {
-  top: -24%;
-  left: -26%;
-  transform: rotate(-24deg);
-}
-
-.drape--bottom {
-  right: -28%;
-  bottom: -26%;
-  transform: rotate(-24deg);
-}
-
-.spray {
-  position: absolute;
-  width: min(44vw, 20rem);
-  height: auto;
-  opacity: 0.9;
-}
-
-.spray--bottom {
-  bottom: -1.5rem;
-  left: -2.5rem;
-}
-
-/* the same sprig turned to grow down from the top-right corner */
-.spray--top {
-  top: -1.5rem;
-  right: -2.5rem;
-  transform: rotate(180deg);
-}
-
-.pearl {
-  position: absolute;
+  width: 80vmax;
+  height: 80vmax;
   border-radius: 9999px;
-  background: radial-gradient(circle at 35% 30%, #fff, #efe9de 55%, #cdc4b1);
-  box-shadow: 0 1px 2px rgba(120, 110, 90, 0.25);
+  animation: auraDrift 18s ease-in-out infinite alternate;
 }
 
-/* hero: the copy fills the lower left, so only the top-right sprig */
-.botanicals--hero .spray--bottom {
-  display: none;
+.opening-aura::before {
+  top: -35vmax;
+  left: -30vmax;
+  background: radial-gradient(circle, rgba(176, 138, 91, 0.2), transparent 62%);
 }
 
-.botanicals--hero .spray--top {
-  width: min(48vw, 26rem);
+.opening-aura::after {
+  right: -32vmax;
+  bottom: -38vmax;
+  background: radial-gradient(circle, rgba(176, 138, 91, 0.14), transparent 62%);
+  animation-delay: -9s;
 }
 
-/* opening screen: on phones start the sprig below the date line; on larger screens the names reach the lower left */
-@media (max-width: 639px) {
-  .botanicals--opening .spray--top {
-    top: 5.5rem;
+@keyframes auraDrift {
+  to {
+    transform: translate(6vmax, 4vmax) scale(1.12);
   }
 }
 
-@media (min-width: 640px) {
-  .botanicals--opening .spray--bottom {
-    display: none;
+/* fine paper grain over the cover */
+.opening-grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* on tap the monogram grows past the viewer, like stepping through a doorway */
+.cover {
+  transform-origin: 50% 55%;
+  transition:
+    transform 1s cubic-bezier(0.7, 0, 0.84, 0),
+    opacity 0.7s ease 0.15s;
+}
+
+.cover.is-entering {
+  transform: scale(4.5);
+  opacity: 0;
+}
+
+/* sized by the smaller of width and height so it also fits landscape phones */
+.cover-mark {
+  display: block;
+  width: clamp(14rem, min(72vw, 54dvh), 24rem);
+  height: auto;
+  overflow: visible;
+}
+
+.cover-line {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 0.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* load sequence: the ring draws, the capitals rise, the ampersand is written, the sprig grows */
+.cover-ring {
+  animation: coverRing 1.8s cubic-bezier(0.65, 0, 0.35, 1) 0.2s both;
+}
+
+.cover-letter {
+  font-family: var(--font-cormorant), serif;
+  font-weight: 500;
+  font-size: 118px;
+  fill: var(--gold);
+}
+
+.cover-rise {
+  transform-box: fill-box;
+  animation: coverRise 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.cover-amp {
+  font-family: var(--font-ampersand), var(--font-allura), cursive;
+  font-size: 144px;
+  fill: var(--gold);
+  /* settles into place between the capitals: a small turn and scale out of soft focus */
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: coverBloom 1.6s cubic-bezier(0.22, 1, 0.36, 1) 1.2s both;
+}
+
+.cover-stem {
+  stroke-dasharray: 1;
+  animation: coverDraw 1.1s ease-out 1.7s both;
+}
+
+.cover-leaf {
+  animation: coverFade 0.7s ease both;
+}
+
+/* once grown, the sprig sways very slightly from where it meets the ring */
+.cover-sprig {
+  animation: coverSway 7s ease-in-out 3.4s infinite;
+}
+
+@keyframes coverRing {
+  from {
+    stroke-dashoffset: 230;
+  }
+  to {
+    stroke-dashoffset: 0;
   }
 }
 
-/* closing band is short: tuck smaller sprigs into its corners */
-.botanicals--band .spray {
-  width: min(28vw, 11rem);
+@keyframes coverDraw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
-.botanicals--band .drape {
-  height: 140%;
+@keyframes coverRise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(6px);
+  }
 }
 
+@keyframes coverBloom {
+  from {
+    opacity: 0;
+    transform: scale(0.8) rotate(-14deg);
+    filter: blur(8px);
+  }
+}
+
+@keyframes coverFade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes coverSway {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-2.5deg);
+  }
+}

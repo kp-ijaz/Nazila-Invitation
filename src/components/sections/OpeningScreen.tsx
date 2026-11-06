@@ -3,19 +3,21 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useMusic } from "@/components/providers/MusicProvider";
-import { Botanicals } from "@/components/ui/DecorativeElements";
-import Monogram from "@/components/ui/Monogram";
-import ScriptName from "@/components/ui/ScriptName";
-import { COUPLE, EVENT } from "@/lib/constants";
+import CoverMark from "@/components/ui/CoverMark";
+import { INVITATION_OPENED } from "@/lib/constants";
 import { useScrollLock } from "@/lib/useScrollLock";
 
+// how long the monogram grows before the screen fades away (matches the CSS transition)
+const OPEN_MS = 800;
+
 /**
- * Editorial welcome — monogram top-left, names stacked large, tap to enter and hear the nasheed.
+ * Welcome screen — a monogram on a clean page; tap to step through it, start the nasheed and enter.
  */
 export default function OpeningScreen() {
   const { startMusic } = useMusic();
   const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [opening, setOpening] = useState(false);
   const shouldReduceMotion = useReducedMotion();
   useScrollLock(visible);
 
@@ -28,8 +30,15 @@ export default function OpeningScreen() {
   }, []);
 
   const dismiss = () => {
-    startMusic();
-    setVisible(false);
+    if (opening) return;
+    startMusic(); // must run inside the tap itself or browsers block the audio
+    window.dispatchEvent(new Event(INVITATION_OPENED));
+    if (shouldReduceMotion) {
+      setVisible(false);
+      return;
+    }
+    setOpening(true);
+    setTimeout(() => setVisible(false), OPEN_MS);
   };
 
   if (!mounted) {
@@ -58,38 +67,21 @@ export default function OpeningScreen() {
             }
           }}
         >
-          <Botanicals className="botanicals--opening" />
+          <div className="opening-aura" aria-hidden />
+          <div className="opening-grain" aria-hidden />
 
           <motion.div
-            className="pointer-events-none relative z-10 flex h-full flex-col justify-between"
+            className="pointer-events-none relative z-10 flex h-full flex-col items-center justify-center"
             initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: shouldReduceMotion ? 0.2 : 1.3, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="flex items-center justify-between">
-              <Monogram size="4.5rem" />
-              <p className="eyebrow text-right">
-                Nikah Invitation
-                <span className="mt-1 block text-ink-muted">{EVENT.date}</span>
-              </p>
-            </div>
-
-            <div className="text-center sm:text-left">
-              <p className="eyebrow mb-3">Together with our families</p>
-              <h1 className="display-name gold-foil-text"><ScriptName name={COUPLE.bride} /></h1>
-              <div className="my-1 flex items-center justify-center gap-6 sm:my-2 sm:justify-start">
-                <span className="font-heading text-6xl italic leading-none text-gold sm:text-8xl">&amp;</span>
-                <span className="ornamental-line hidden sm:block sm:w-64" />
-              </div>
-              <h1 className="display-name gold-foil-text sm:ml-[8vw]"><ScriptName name={COUPLE.groom} /></h1>
-            </div>
-
-            <div className="flex items-end justify-center sm:justify-between">
-              <p className="opening-tap-hint eyebrow text-ink-muted">Tap to open</p>
-              <p className="hidden font-heading text-xl font-light italic text-ink/70 sm:block">
-                {EVENT.venue}
-              </p>
-            </div>
+            <CoverMark entering={opening} />
+            <p
+              className={`opening-tap-hint mt-10 font-body text-xs tracking-[0.32em] text-ink-muted transition-opacity duration-300 ${opening ? "!opacity-0" : ""}`}
+            >
+              Tap to open
+            </p>
           </motion.div>
         </motion.section>
       )}

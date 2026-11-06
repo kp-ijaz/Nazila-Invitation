@@ -1,88 +1,81 @@
 "use client";
 
-import { Botanicals } from "@/components/ui/DecorativeElements";
-import FadeIn from "@/components/ui/FadeIn";
+import { useEffect, useRef, useState } from "react";
+import { motion, useReducedMotion, useScroll, useTransform, type Variants } from "framer-motion";
+import CoverMark from "@/components/ui/CoverMark";
 import GuestGreeting from "@/components/ui/GuestGreeting";
 import ScriptName from "@/components/ui/ScriptName";
-import { BISMILLAH, COUPLE, EVENT, HERO } from "@/lib/constants";
+import { COUPLE, HERO, INVITATION_OPENED } from "@/lib/constants";
 
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+// names follow once the monogram has started drawing
+const sequence: Variants = {
+  shown: { transition: { staggerChildren: 0.22, delayChildren: 0.9 } },
+};
+
+// soft-focus rise
+const rise: Variants = {
+  hidden: { opacity: 0, y: 18, filter: "blur(6px)" },
+  shown: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 1.4, ease: EASE } },
+};
+
+/** Quiet first section: the monogram, the names, one line — and space. */
 export default function Hero() {
+  const ref = useRef<HTMLElement>(null);
+  const reduce = useReducedMotion();
+  // the entrance waits for the tap-to-open screen, so guests actually see it play
+  const [open, setOpen] = useState(false);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
+  const y = useTransform(scrollYProgress, [0, 1], [0, 110]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
+  useEffect(() => {
+    const onOpen = () => setOpen(true);
+    window.addEventListener(INVITATION_OPENED, onOpen);
+    return () => window.removeEventListener(INVITATION_OPENED, onOpen);
+  }, []);
+
+  const shown = open || reduce;
+
   return (
-    <section
-      id="hero"
-      className="relative flex items-center overflow-hidden px-6 pt-32 pb-16 sm:px-12 lg:min-h-[92dvh] lg:px-20 lg:pt-24"
-    >
-      <Botanicals className="botanicals--hero" />
-      <div className="hero-glow" aria-hidden />
+    <section ref={ref} id="hero" className="relative flex flex-1 items-center justify-center px-6 pt-20 pb-6">
+      {/* the motion wrapper stays outside the card, so "Download invitation" captures it untransformed */}
+      <motion.div className="w-full" style={reduce ? undefined : { y, opacity }}>
+        <motion.div
+          id="invitation-card"
+          className="mx-auto flex max-w-2xl flex-col items-center px-4 py-8 text-center"
+          initial={reduce ? false : "hidden"}
+          animate={shown ? "shown" : "hidden"}
+          variants={sequence}
+        >
+          <div className="hero-mark">{shown ? <CoverMark entering={false} /> : null}</div>
 
-      <p className="side-text eyebrow hidden lg:block">
-        {HERO.ceremony} &nbsp;·&nbsp; {EVENT.dateMonthYear}
-      </p>
+          <motion.div variants={rise} className="hero-gap-lg">
+            <GuestGreeting />
+          </motion.div>
 
-      <div
-        id="invitation-card"
-        className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16"
-      >
-        <div>
-          <FadeIn duration={1.1}>
-            <p className="bismillah gold-foil-text font-arabic text-center sm:text-left" dir="rtl" lang="ar">
-              {BISMILLAH}
-            </p>
-          </FadeIn>
+          <motion.h1 variants={rise} className="display-name hero-name gold-foil-text">
+            <ScriptName name={COUPLE.bride} />
+          </motion.h1>
+          <motion.span variants={rise} className="hero-amp font-heading italic text-gold" aria-hidden>
+            &amp;
+          </motion.span>
+          <motion.h1 variants={rise} className="display-name hero-name gold-foil-text">
+            <span className="name-title">
+              <ScriptName name={COUPLE.groomTitle} />
+            </span>{" "}
+            <ScriptName name={COUPLE.groomFull} />
+          </motion.h1>
 
-          <FadeIn delay={0.2} duration={1}>
-            <div className="mt-10 text-center sm:mt-5 sm:text-left">
-              <GuestGreeting />
-              <p className="eyebrow">{HERO.subtitle}</p>
-            </div>
-          </FadeIn>
-
-          <FadeIn delay={0.35} duration={1.2}>
-            <div className="mt-2 text-center sm:text-left">
-              <h1 className="display-name gold-foil-text">
-                <ScriptName name={COUPLE.bride} />
-              </h1>
-              <div className="my-1 flex items-center justify-center gap-6 sm:my-2 sm:justify-start">
-                <span className="font-heading text-6xl italic leading-none text-gold sm:text-8xl">&amp;</span>
-                <span className="ornamental-line hidden sm:block sm:w-56" />
-              </div>
-              <h1 className="display-name gold-foil-text sm:ml-[6vw]">
-                <ScriptName name={COUPLE.groom} />
-              </h1>
-            </div>
-          </FadeIn>
-
-          <FadeIn delay={0.55} duration={1}>
-            <p className="mx-auto mt-6 max-w-md text-center font-heading text-2xl font-light italic text-ink/85 sm:mx-0 sm:text-left sm:text-3xl">
-              {HERO.invitation}
-            </p>
-            <dl className="mx-auto mt-6 grid max-w-md grid-cols-2 gap-x-6 gap-y-5 border-t border-gold/30 pt-6 text-center sm:mx-0 sm:text-left">
-              <div>
-                <dt className="eyebrow">Date</dt>
-                <dd className="mt-1 font-heading text-xl font-light text-ink">{EVENT.date}</dd>
-              </div>
-              <div>
-                <dt className="eyebrow">Time</dt>
-                <dd className="mt-1 font-heading text-xl font-light text-gold-soft">{EVENT.nikahTime}</dd>
-              </div>
-              <div className="col-span-2">
-                <dt className="eyebrow">Venue</dt>
-                <dd className="mt-1 font-heading text-xl font-light text-ink">
-                  {EVENT.venue}, {EVENT.address}
-                </dd>
-              </div>
-            </dl>
-          </FadeIn>
-        </div>
-
-        <div className="relative hidden min-h-[55vh] lg:block">
-          <div className="date-stamp absolute right-0 bottom-0">
-            <p className="font-heading text-sm italic text-gold">{EVENT.dateDay}</p>
-            <p className="font-heading text-6xl font-light leading-none text-ink">{EVENT.dateNumber}</p>
-            <p className="eyebrow mt-2 text-xs">{EVENT.dateMonthYear}</p>
-          </div>
-        </div>
-      </div>
+          <motion.p
+            variants={rise}
+            className="hero-gap-md max-w-xs text-balance font-heading text-lg font-light italic leading-relaxed text-ink-muted sm:max-w-sm sm:text-xl"
+          >
+            {HERO.invitation}
+          </motion.p>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

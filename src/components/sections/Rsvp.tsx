@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Download, HeartHandshake, MessageCircle, Phone } from "lucide-react";
 import FadeIn from "@/components/ui/FadeIn";
 import GoldButton from "@/components/ui/GoldButton";
+import { RevealWords, WipeIn } from "@/components/ui/Motion";
 import ThankYou from "@/components/ui/ThankYou";
 import { CONTACTS, RSVP } from "@/lib/constants";
 
@@ -24,10 +25,10 @@ export default function Rsvp() {
       <div className="mx-auto grid max-w-6xl items-center gap-12 border-y border-gold/25 py-10 lg:grid-cols-[1.2fr_1fr] lg:gap-16 lg:py-14">
         <FadeIn duration={1.1}>
           <h2 className="font-display text-4xl font-medium leading-tight tracking-[0.08em] text-ink sm:text-6xl">
-            Will you
-            <span className="gold-foil-text mt-2 block font-script text-6xl normal-case tracking-normal sm:text-8xl">
+            <RevealWords text="Will you" />
+            <WipeIn delay={0.4} className="gold-foil-text mt-2 block font-script text-6xl normal-case tracking-normal sm:text-8xl">
               Join us?
-            </span>
+            </WipeIn>
           </h2>
           <p className="mt-8 max-w-md font-heading text-xl font-light italic text-ink/80 sm:text-2xl">
             Let us know you are coming, or send your duas from afar — both mean the world to us.

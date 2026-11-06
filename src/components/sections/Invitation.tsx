@@ -4,7 +4,7 @@ import { useState } from "react";
 import FadeIn from "@/components/ui/FadeIn";
 import ArabicCalligraphy from "@/components/ui/ArabicCalligraphy";
 import SectionHeading from "@/components/ui/SectionHeading";
-import { GoldLeaf } from "@/components/ui/DecorativeElements";
+import { ScrubWords } from "@/components/ui/Motion";
 import { QURAN_VERSE } from "@/lib/constants";
 
 export default function Invitation() {
@@ -12,7 +12,6 @@ export default function Invitation() {
 
   return (
     <section id="invitation" className="relative overflow-hidden px-6 pt-4 pb-14 sm:px-12 sm:pt-6 sm:pb-20 lg:px-20">
-      <GoldLeaf className="right-8 top-10 -scale-x-100 opacity-40" />
 
       <div className="mx-auto max-w-6xl">
         <FadeIn duration={1}>
@@ -21,8 +20,8 @@ export default function Invitation() {
 
         <div className="mt-14 grid items-center gap-12 sm:mt-16 lg:grid-cols-2 lg:gap-20">
           <FadeIn delay={0.14} duration={1.25} className="lg:order-2">
-            <ArabicCalligraphy size="lg" className="gold-foil-text text-center lg:text-right">
-              {QURAN_VERSE.arabic}
+            <ArabicCalligraphy size="lg" className="text-center lg:text-right">
+              <ScrubWords text={QURAN_VERSE.arabic} wordClassName="gold-foil-text" />
             </ArabicCalligraphy>
           </FadeIn>
 
@@ -46,7 +45,7 @@ export default function Invitation() {
                 </p>
               ) : (
                 <p className="font-heading text-xl font-light italic leading-relaxed text-ink/85 sm:text-2xl sm:leading-relaxed">
-                  &ldquo;{QURAN_VERSE.english}&rdquo;{translate}
+                  <ScrubWords text={`“${QURAN_VERSE.english}”`} after={translate} />
                 </p>
               );
             })()}

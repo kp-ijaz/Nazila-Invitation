@@ -10,13 +10,13 @@ type GoldButtonProps = {
 );
 
 const base =
-  "gold-shimmer inline-flex min-h-12 items-center justify-center gap-2 rounded-full border px-6 py-3 font-body text-xs font-medium tracking-[0.08em] transition-all duration-500 hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-paper sm:px-7";
+  "inline-flex min-h-12 items-center justify-center gap-2 rounded-full border px-6 py-3 font-body text-xs font-medium tracking-[0.08em] transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-paper sm:px-7";
 
 const variants = {
   outline:
-    "border-gold/50 bg-transparent text-gold-soft hover:border-gold hover:bg-gold/10 hover:shadow-[0_12px_32px_rgba(212,175,90,0.18)]",
+    "border-gold/40 bg-transparent text-gold hover:border-gold hover:bg-gold/5",
   solid:
-    "gold-metallic border-transparent text-ink shadow-[0_10px_30px_rgba(212,175,90,0.25)] hover:shadow-[0_16px_40px_rgba(212,175,90,0.4)]",
+    "border-gold bg-gold text-paper hover:border-gold-deep hover:bg-gold-deep",
 };
 
 export default function GoldButton({
