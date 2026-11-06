@@ -427,16 +427,7 @@ body {
 
 /* ---------- photo, nav, closing band ---------- */
 
-/* first section: monogram, names, one line — spacing scales with screen height so it always fits one screen */
-.hero-mark {
-  width: clamp(6.5rem, min(26vw, 15dvh), 9.5rem);
-  aspect-ratio: 1;
-}
-
-.hero-mark .cover-mark {
-  width: 100%;
-}
-
+/* first section: Bismillah, names, one line — spacing scales with screen height so it always fits one screen */
 .hero-gap-lg {
   margin-top: clamp(1.75rem, 6dvh, 4rem);
 }
@@ -533,7 +524,7 @@ body {
 /* sized by the smaller of width and height so it also fits landscape phones */
 .cover-mark {
   display: block;
-  width: clamp(14rem, min(72vw, 54dvh), 24rem);
+  width: clamp(8rem, min(40vw, 28dvh), 11rem);
   height: auto;
   overflow: visible;
 }

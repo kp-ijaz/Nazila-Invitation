@@ -77,12 +77,18 @@ export default function OpeningScreen() {
             transition={{ duration: shouldReduceMotion ? 0.2 : 1.3, ease: [0.22, 1, 0.36, 1] }}
           >
             <CoverMark entering={opening} />
-            <p
-              className={`opening-tap-hint mt-10 font-body text-xs tracking-[0.32em] text-ink-muted transition-opacity duration-300 ${opening ? "!opacity-0" : ""}`}
-            >
-              Tap to open
-            </p>
           </motion.div>
+
+          {/* pinned 30px above the bottom edge, clear of the iPhone home indicator */}
+          <motion.p
+            className={`opening-tap-hint pointer-events-none absolute inset-x-0 z-10 text-center font-body text-xs tracking-[0.32em] text-ink-muted transition-opacity duration-300 ${opening ? "!opacity-0" : ""}`}
+            style={{ bottom: "calc(30px + env(safe-area-inset-bottom))" }}
+            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: shouldReduceMotion ? 0.2 : 1.3, delay: shouldReduceMotion ? 0 : 0.4 }}
+          >
+            Tap to open
+          </motion.p>
         </motion.section>
       )}
     </AnimatePresence>
