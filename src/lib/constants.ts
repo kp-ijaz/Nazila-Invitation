@@ -54,8 +54,8 @@ export const EVENT = {
 };
 
 export const CONTACTS = {
-  familyContact: "+91 75106 31841",
-  whatsApp: "+91 75106 31841",
+  familyContact: "+91 97782 00437",
+  whatsApp: "+91 97782 00437",
 };
 
 export const RSVP = {
