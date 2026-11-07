@@ -59,14 +59,19 @@ export const CONTACTS = {
 };
 
 export const RSVP = {
-  // sent straight to the bride on WhatsApp, so it speaks to her
-  // the Arabic dua stands on its own line, so WhatsApp doesn't jumble right-to-left and left-to-right text
-  dua: `Assalamu Alaikum ${COUPLE.bride},
+  // sent straight to the bride on WhatsApp, so it speaks to her; _italic_ is WhatsApp formatting.
+  // \u200E (left-to-right mark) keeps the Arabic lines left-aligned with the English instead of jumping right.
+  dua: `\u200Eالسَّلَامُ عَلَيْكُمْ 🤍
 
-بَارَكَ اللَّهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ
-May Allah bless you both, shower His blessings upon you, and unite you in goodness.
+\u200Eبَارَكَ اللَّهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ
 
-Heartfelt congratulations on your Nikah with ${COUPLE.groomTitle} ${COUPLE.groom}. May Allah fill your home with love, mercy and sakinah, and keep you together in this life and in Jannah. Ameen.`,
+_May Allah bless you both, shower His blessings upon you, and unite you in goodness._
+
+Heartfelt congratulations on your Nikah with ${COUPLE.groomTitle} ${COUPLE.groom}.
+
+May Allah fill your home with love, mercy and sakinah, and keep you together in this life and in Jannah.
+
+Ameen 🤲`,
 };
 
 export const LOCATION = {
