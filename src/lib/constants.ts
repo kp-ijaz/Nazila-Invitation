@@ -60,10 +60,10 @@ export const CONTACTS = {
 
 export const RSVP = {
   // sent straight to the bride on WhatsApp, so it speaks to her; _italic_ is WhatsApp formatting.
-  // \u200E (left-to-right mark) keeps the Arabic lines left-aligned with the English instead of jumping right.
-  dua: `\u200Eالسَّلَامُ عَلَيْكُمْ 🤍
+  // no emoji or invisible direction marks: they arrive in WhatsApp as broken characters.
+  dua: `السَّلَامُ عَلَيْكُمْ
 
-\u200Eبَارَكَ اللَّهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ
+بَارَكَ اللَّهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ
 
 _May Allah bless you both, shower His blessings upon you, and unite you in goodness._
 
@@ -71,7 +71,7 @@ Heartfelt congratulations on your Nikah with ${COUPLE.groomTitle} ${COUPLE.groom
 
 May Allah fill your home with love, mercy and sakinah, and keep you together in this life and in Jannah.
 
-Ameen 🤲`,
+Ameen`,
 };
 
 export const LOCATION = {
