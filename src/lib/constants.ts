@@ -59,7 +59,14 @@ export const CONTACTS = {
 };
 
 export const RSVP = {
-  dua: `Assalamu Alaikum! Sending heartfelt duas and congratulations to ${COUPLE.shortName} on their Nikah. May Allah bless your union.`,
+  // sent straight to the bride on WhatsApp, so it speaks to her
+  // the Arabic dua stands on its own line, so WhatsApp doesn't jumble right-to-left and left-to-right text
+  dua: `Assalamu Alaikum ${COUPLE.bride},
+
+بَارَكَ اللَّهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ
+May Allah bless you both, shower His blessings upon you, and unite you in goodness.
+
+Heartfelt congratulations on your Nikah with ${COUPLE.groomTitle} ${COUPLE.groom}. May Allah fill your home with love, mercy and sakinah, and keep you together in this life and in Jannah. Ameen.`,
 };
 
 export const LOCATION = {
