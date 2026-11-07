@@ -443,12 +443,6 @@ body {
   line-height: 1;
 }
 
-.is-exporting,
-.is-exporting * {
-  animation: none !important;
-  transition: none !important;
-}
-
 /* the groom's full name has to fit on one line, so hero names run smaller than other display names */
 .display-name.hero-name {
   font-size: calc(clamp(3rem, 12.8vw, 6.4rem) - 4px);

@@ -60,10 +60,8 @@ export default function Hero() {
 
   return (
     <section ref={ref} id="hero" className="relative flex flex-1 items-center justify-center px-6 pt-20 pb-6">
-      {/* the motion wrapper stays outside the card, so "Download invitation" captures it untransformed */}
       <motion.div className="w-full" style={reduce ? undefined : { y, opacity }}>
         <motion.div
-          id="invitation-card"
           className="mx-auto flex max-w-2xl flex-col items-center px-4 py-8 text-center"
           initial={reduce ? false : "hidden"}
           animate={shown ? "shown" : "hidden"}
@@ -119,7 +117,7 @@ export default function Hero() {
           </Reveal>
 
           <Reveal shown={!!shown}>
-            <ScrollIndicator exportHide />
+            <ScrollIndicator />
           </Reveal>
         </motion.div>
       </motion.div>

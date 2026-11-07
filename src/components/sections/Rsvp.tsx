@@ -6,16 +6,11 @@ import FadeIn from "@/components/ui/FadeIn";
 import GoldButton from "@/components/ui/GoldButton";
 import { RevealWords, WipeIn } from "@/components/ui/Motion";
 import ThankYou from "@/components/ui/ThankYou";
-import { CONTACTS, RSVP } from "@/lib/constants";
+import { CONTACTS, INVITATION_CARD, RSVP } from "@/lib/constants";
 
 const whatsAppNumber = CONTACTS.whatsApp.replace(/[^0-9]/g, "");
 const whatsAppLink = (text: string) =>
   `https://wa.me/${whatsAppNumber}?text=${encodeURIComponent(text)}`;
-
-async function handleDownload() {
-  const { downloadInvitationCard } = await import("@/lib/download-invitation");
-  await downloadInvitationCard();
-}
 
 export default function Rsvp() {
   const [thanked, setThanked] = useState(false);
@@ -57,14 +52,14 @@ export default function Rsvp() {
             </GoldButton>
 
             <div className="mt-6 flex flex-col gap-4 border-t border-gold/20 pt-6 font-body text-xs tracking-[0.08em] text-ink-muted">
-              <button
-                type="button"
-                onClick={handleDownload}
+              <a
+                href={INVITATION_CARD.src}
+                download={INVITATION_CARD.filename}
                 className="inline-flex items-center gap-3 text-left transition-colors hover:text-gold-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/60"
               >
                 <Download className="h-4 w-4 text-gold" strokeWidth={1.5} />
                 Download invitation
-              </button>
+              </a>
               <a
                 href={`tel:${CONTACTS.familyContact.replace(/\s/g, "")}`}
                 className="inline-flex items-center gap-3 transition-colors hover:text-gold-soft"

@@ -3,17 +3,12 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 
-interface ScrollIndicatorProps {
-  exportHide?: boolean;
-}
-
-export default function ScrollIndicator({ exportHide = false }: ScrollIndicatorProps) {
+export default function ScrollIndicator() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
     <motion.a
       href="#invitation"
-      data-export-hide={exportHide ? "" : undefined}
       className="mt-10 flex min-h-12 flex-col items-center justify-center gap-2 rounded-full px-4 text-ink-muted transition-colors hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 sm:mt-12"
       animate={shouldReduceMotion ? {} : { y: [0, 8, 0] }}
       transition={{

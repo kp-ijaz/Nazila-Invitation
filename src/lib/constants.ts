@@ -10,7 +10,8 @@ export const COUPLE = {
 export const BISMILLAH = "بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ";
 
 export const INVITATION_CARD = {
-  filename: "nazila-aqib-nikah-invitation.png",
+  src: "/invitation/nazila-aqib-invitation.pdf",
+  filename: "Nazila-Aqib-Nikah-Invitation.pdf",
 };
 
 export const HERO = {
@@ -53,8 +54,8 @@ export const EVENT = {
 };
 
 export const CONTACTS = {
-  familyContact: "+91 9645755777",
-  whatsApp: "+91 7510644714",
+  familyContact: "+91 75106 31841",
+  whatsApp: "+91 75106 31841",
 };
 
 export const RSVP = {
