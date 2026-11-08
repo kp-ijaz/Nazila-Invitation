@@ -75,13 +75,13 @@ export default function Hero() {
             <GuestGreeting />
           </motion.div>
 
-          <motion.h1 variants={rise} className="display-name hero-name gold-foil-text">
+          <motion.h1 variants={rise} className="display-name hero-name text-gold">
             <ScriptName name={COUPLE.bride} />
           </motion.h1>
           <motion.span variants={rise} className="hero-amp font-heading italic text-gold" aria-hidden>
             &amp;
           </motion.span>
-          <motion.h1 variants={rise} className="display-name hero-name gold-foil-text">
+          <motion.h1 variants={rise} className="display-name hero-name text-gold">
             <span className="name-title">
               <ScriptName name={COUPLE.groomTitle} />
             </span>{" "}
