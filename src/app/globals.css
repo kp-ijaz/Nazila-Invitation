@@ -446,11 +446,18 @@ body {
 /* the groom's full name has to fit on one line, so hero names run smaller than other display names */
 .display-name.hero-name {
   font-size: calc(clamp(3rem, 12.8vw, 6.4rem) - 4px);
+  /* Allura has a single weight, so the browser emboldens it */
+  font-weight: 700;
+  font-synthesis: weight;
 }
 
-/* the title is set like the name itself, a step smaller, so "Dr." reads as part of it */
+/* the heaviest Cormorant weight we load */
+.hero-name .name-initial {
+  font-weight: 600;
+}
+
+/* "Dr." is set at the same size and weight as the name itself */
 .name-title {
-  font-size: 0.52em;
   margin-right: 0.08em;
 }
 
