@@ -83,8 +83,17 @@ export default function MusicProvider({ children }: { children: ReactNode }) {
 
     audio.loop = true;
     audio.volume = AUDIO.volume;
-    audio.preload = "auto";
-    audio.load();
+
+    // buffer the nasheed only once the page has finished loading, so it doesn't hold up the first screen;
+    // a tap before then still plays it, the browser just fetches it on demand
+    const bufferMusic = () => {
+      if (audio.preload === "auto") return;
+      audio.preload = "auto";
+      // load() restarts the element, so skip it if the guest has already tapped and the music is starting
+      if (audio.paused) audio.load();
+    };
+    if (document.readyState === "complete") bufferMusic();
+    else window.addEventListener("load", bufferMusic, { once: true });
 
     const onPlay = () => {
       setIsPlaying(true);
@@ -133,6 +142,7 @@ export default function MusicProvider({ children }: { children: ReactNode }) {
       document.removeEventListener("visibilitychange", onVisibility);
       window.removeEventListener("pagehide", onPageHide);
       window.removeEventListener("pageshow", onPageShow);
+      window.removeEventListener("load", bufferMusic);
       audio.pause();
       audio.removeEventListener("play", onPlay);
       audio.removeEventListener("pause", onPause);
@@ -142,7 +152,7 @@ export default function MusicProvider({ children }: { children: ReactNode }) {
 
   return (
     <MusicContext.Provider value={{ isPlaying, hasError, startMusic, toggle }}>
-      <audio ref={audioRef} loop preload="auto" playsInline className="hidden">
+      <audio ref={audioRef} loop preload="none" playsInline className="hidden">
         {AUDIO.sources.map((source) => (
           <source key={source.src} src={source.src} type={source.type} />
         ))}

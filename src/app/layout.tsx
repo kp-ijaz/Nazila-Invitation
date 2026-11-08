@@ -26,11 +26,13 @@ const ampersand = Mrs_Saint_Delafield({
   display: "swap",
 });
 
+// only used for the verse further down the page, so it isn't preloaded with the first screen
 const malayalam = Noto_Serif_Malayalam({
   subsets: ["malayalam"],
   weight: ["400", "500"],
   variable: "--font-noto-malayalam",
   display: "swap",
+  preload: false,
 });
 
 const amiri = Amiri({
@@ -81,14 +83,6 @@ export default function RootLayout({
       lang="en"
       className={`${cormorant.variable} ${allura.variable} ${amiri.variable} ${malayalam.variable} ${ampersand.variable}`}
     >
-      <head>
-        <link
-          rel="preload"
-          href="/audio/wedding-nasheed.mp3"
-          as="audio"
-          type="audio/mpeg"
-        />
-      </head>
       <body className="antialiased">{children}</body>
     </html>
   );

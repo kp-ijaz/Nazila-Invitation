@@ -269,6 +269,28 @@ body {
   animation: musicTogglePulse 2.4s ease-in-out infinite;
 }
 
+/* the cover rises in and the hint follows; CSS rather than JS so they run before the page's scripts load */
+.opening-rise {
+  animation: openingRise 1.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.opening-hint-in {
+  animation: openingFade 1.3s ease 0.4s both;
+}
+
+@keyframes openingRise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+@keyframes openingFade {
+  from {
+    opacity: 0;
+  }
+}
+
 /* ---------- map ---------- */
 
 .map-frame iframe {

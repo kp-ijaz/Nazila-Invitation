@@ -15,8 +15,8 @@ const OPEN_MS = 800;
  */
 export default function OpeningScreen() {
   const { startMusic } = useMusic();
-  const [mounted, setMounted] = useState(false);
-  const [visible, setVisible] = useState(false);
+  // rendered into the page's HTML, so the cover shows before any script has loaded
+  const [visible, setVisible] = useState(true);
   const [opening, setOpening] = useState(false);
   const shouldReduceMotion = useReducedMotion();
   useScrollLock(visible);
@@ -25,8 +25,6 @@ export default function OpeningScreen() {
     // every visit starts at the top, behind the opening screen
     history.scrollRestoration = "manual";
     window.scrollTo(0, 0);
-    setMounted(true);
-    setVisible(true);
   }, []);
 
   const dismiss = () => {
@@ -40,10 +38,6 @@ export default function OpeningScreen() {
     setOpening(true);
     setTimeout(() => setVisible(false), OPEN_MS);
   };
-
-  if (!mounted) {
-    return null;
-  }
 
   return (
     <AnimatePresence>
@@ -70,25 +64,18 @@ export default function OpeningScreen() {
           <div className="opening-aura" aria-hidden />
           <div className="opening-grain" aria-hidden />
 
-          <motion.div
-            className="pointer-events-none relative z-10 flex h-full flex-col items-center justify-center"
-            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: shouldReduceMotion ? 0.2 : 1.3, ease: [0.22, 1, 0.36, 1] }}
-          >
+          {/* the entrances are CSS animations so they play straight from the HTML, before hydration */}
+          <div className="opening-rise pointer-events-none relative z-10 flex h-full flex-col items-center justify-center">
             <CoverMark entering={opening} />
-          </motion.div>
+          </div>
 
           {/* pinned 30px above the bottom edge, clear of the iPhone home indicator */}
-          <motion.p
-            className={`opening-tap-hint pointer-events-none absolute inset-x-0 z-10 text-center font-body text-xs tracking-[0.32em] text-ink-muted transition-opacity duration-300 ${opening ? "!opacity-0" : ""}`}
+          <p
+            className={`opening-hint-in pointer-events-none absolute inset-x-0 z-10 text-center font-body text-xs tracking-[0.32em] text-ink-muted transition-opacity duration-300 ${opening ? "!opacity-0" : ""}`}
             style={{ bottom: "calc(30px + env(safe-area-inset-bottom))" }}
-            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: shouldReduceMotion ? 0.2 : 1.3, delay: shouldReduceMotion ? 0 : 0.4 }}
           >
-            Tap to open
-          </motion.p>
+            <span className="opening-tap-hint inline-block">Tap to open</span>
+          </p>
         </motion.section>
       )}
     </AnimatePresence>
