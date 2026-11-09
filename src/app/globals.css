@@ -34,6 +34,8 @@
 }
 
 :root {
+  /* light only, so phones with dark mode on (e.g. Chrome's auto-darken) show the same ivory page */
+  color-scheme: only light;
   --paper: #faf6ee;
   --paper-2: #f3ecdf;
   --surface: #fffdf8;
@@ -47,6 +49,23 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+/*
+ * The "dark theme" is the light theme. Browsers that force-darken pages without a dark style of their own
+ * (Samsung Internet's dark mode, for one) leave a page alone once it declares one, so guests in dark mode
+ * see the same ivory invitation.
+ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: only light;
+  }
+
+  html,
+  body {
+    background-color: #faf6ee;
+    color: #2a211a;
+  }
 }
 
 body {

@@ -69,6 +69,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: "#faf6ee",
+  // the invitation has one look: tells browsers not to apply their automatic dark mode to it
+  colorScheme: "only light",
   width: "device-width",
   initialScale: 1,
 };
